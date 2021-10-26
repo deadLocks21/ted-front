@@ -179,8 +179,10 @@ export default createStore({
       context.commit("DELETE_TASK", payload);
     },
     deleteTodoList(context) {
+      fetch(`/ted-api/todolists/delete/${context.state.displayed_todolist.id}`, {
+        method: "DELETE",
+      });
       context.commit("DELETE_TODOLIST");
-      // TODO Delete
       context.commit("EXIT_DELETE_MODE");
     },
   },
