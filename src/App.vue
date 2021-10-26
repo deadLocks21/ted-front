@@ -1,6 +1,8 @@
 <template>
-  <Login v-if="!$store.state.connected" />
-  <DisplayData v-if="$store.state.connected" />
+  <!-- <Login v-if="!$store.state.connected" /> -->
+  <!-- <DisplayData v-if="$store.state.connected" /> -->
+  <Login v-if="$store.state.connected" />
+  <DisplayData v-if="!$store.state.connected" />
 </template>
 
 <style lang="less">
@@ -26,8 +28,8 @@ body {
 </style>
 
 <script>
-import Login from "./components/Login.vue";
-import DisplayData from "./components/DisplayData.vue";
+import Login from "./views/LoginPage.vue";
+import DisplayData from "./views/MainPage.vue";
 
 export default {
   name: "App",

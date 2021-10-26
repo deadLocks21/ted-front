@@ -6,14 +6,15 @@
 </template>
 
 <style>
-#app_header {
+header {
+  flex: 0 1 auto;
   display: flex;
   justify-content: space-between;
 }
 </style>
 
 <script>
-import WelcomeMessage from '../views/WelcomeMessage.vue'
+import WelcomeMessage from './WelcomeMessage.vue'
 import DisconnectionButton from './DisconnectionButton.vue'
 
 export default {

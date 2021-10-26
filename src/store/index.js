@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     connected: false,
+    todolists: [],
   },
   mutations: {
     CONNECTION(state) {
@@ -11,14 +12,18 @@ export default createStore({
     DISCONNECTION(state) {
       state.connected = false;
     },
+    SET_TODOLISTS(state, list) {
+      state.todolists = list;
+    },
   },
   actions: {
-    login(context, playload) {
-      if(playload) 
-        context.commit('CONNECTION')
-      else
-        context.commit('DISCONNECTION')
-    }
+    login(context, payload) {
+      if (payload) context.commit("CONNECTION");
+      else context.commit("DISCONNECTION");
+    },
+    setTodoLists(context, payload) {
+      if (payload instanceof Array) context.commit("SET_TODOLISTS", payload);
+    },
   },
   modules: {},
 });
