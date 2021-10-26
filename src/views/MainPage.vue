@@ -22,109 +22,32 @@ import Content from "../components/Main/Content/Content.vue";
 
 export default {
   name: "MainPage",
-  beforeMount() {
-    this.$store.dispatch("setTodoLists", [
-      {
-        id: 1,
-        name: "My fisrt todolist",
-        user: 1,
-        tasks: [
-          {
-            id: 1,
-            task: "My first task",
-            completed: false,
-            todolist: 1,
-          },
-          {
-            id: 2,
-            task: "My second completed task",
-            completed: true,
-            todolist: 1,
-          },
-          {
-            id: 3,
-            task: "My third task",
-            completed: false,
-            todolist: 1,
-          },
-          {
-            id: 4,
-            task: "My forth completed task",
-            completed: true,
-            todolist: 1,
-          },
-          {
-            id: 5,
-            task: "My five task",
-            completed: false,
-            todolist: 1,
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: "My second todolist",
-        user: 1,
-        tasks: [
-          {
-            id: 1,
-            task: "My first task",
-            completed: false,
-            todolist: 1,
-          },
-          {
-            id: 2,
-            task: "My second completed task",
-            completed: true,
-            todolist: 1,
-          },
-          {
-            id: 3,
-            task: "My third task",
-            completed: false,
-            todolist: 1,
-          },
-          {
-            id: 4,
-            task: "My forth completed task",
-            completed: true,
-            todolist: 1,
-          },
-          {
-            id: 5,
-            task: "My five task",
-            completed: false,
-            todolist: 1,
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: "My thrid todolist",
-        user: 1,
-        tasks: [
-          {
-            id: 1,
-            task: "My first task",
-            completed: false,
-            todolist: 1,
-          },
-          {
-            id: 2,
-            task: "My second completed task",
-            completed: true,
-            todolist: 1,
-          },
-          {
-            id: 3,
-            task: "My third task",
-            completed: false,
-            todolist: 1,
-          },
-        ],
-      },
-    ]);
-    // TODO Load data
+  beforeCreate() {
+    fetch("/ted-api/todolists", {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let todolists = data.todolists;
+        todolists.forEach((element) => {element.tasks = []});
+        this.$store.dispatch("setTodoLists", todolists);
+
+        todolists.forEach((element) => {
+          fetch(`/ted-api/tasks/listByTodolist/${element.id}`, {
+            method: "GET",
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              data.tasks.forEach((element) => {
+                this.$store.dispatch("addTask", element);
+              });
+            });
+        });
+      });
   },
   components: {
     Header,

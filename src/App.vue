@@ -1,12 +1,12 @@
 <template>
-  <!-- <Login v-if="!$store.state.connected" /> -->
-  <!-- <DisplayData v-if="$store.state.connected" /> -->
-  <Login v-if="$store.state.connected" />
-  <MainPage v-if="!$store.state.connected" />
+  <Login v-if="!$store.state.connected" />
+  <MainPage v-if="$store.state.connected" />
+  <!-- <Login v-if="$store.state.connected" /> -->
+  <!-- <MainPage v-if="!$store.state.connected" /> -->
   <DeletePage v-if="$store.state.delete" />
 </template>
 
-<style lang="less">
+<style>
 html,
 body,
 #app {

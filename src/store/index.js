@@ -135,6 +135,9 @@ export default createStore({
       context.commit("ADD_NEW_TASK", new_task);
       // TODO Add online !!
     },
+    addTask(context, payload) {
+      context.commit("ADD_NEW_TASK", payload);
+    },
     setEditMode(context) {
       if (context.state.edit) {
         context.commit("EXIT_EDIT_MODE");
