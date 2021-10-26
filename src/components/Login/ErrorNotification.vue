@@ -27,4 +27,10 @@ export default {
   color: white;
   font-size: 0.9em;
 }
+
+@media only screen and (max-device-width: 812px) {
+  #error {
+    width: 70%;
+  }
+}
 </style>

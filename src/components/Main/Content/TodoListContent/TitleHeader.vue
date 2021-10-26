@@ -37,4 +37,15 @@ export default {
   border: none;
   border-bottom: solid rgba(0, 0, 0, 0.6) 1.5px;
 }
+
+@media only screen and (max-device-width: 812px) {
+  #title_header > h1 {
+    margin-bottom: 0;
+  }
+
+  #title_header > input {
+    width: 90%;
+    margin-bottom: 0;
+  }
+}
 </style>

@@ -56,4 +56,16 @@ ul::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
 }
+
+@media only screen and (max-device-width: 812px) {
+  section {
+    width: 90%;
+    height: 70%;
+    margin: auto;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+}
 </style>

@@ -25,4 +25,10 @@ export default {
   display: flex;
   justify-content: space-around;
 }
+
+@media only screen and (max-device-width: 812px) {
+  .row {
+    flex-direction: column;
+  }
+}
 </style>

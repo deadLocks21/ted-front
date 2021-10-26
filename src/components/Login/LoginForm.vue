@@ -1,14 +1,18 @@
 <template>
   <div id="login">
-    <LoginInput type="text" name="login" v-model="login">Nom d'utilisateur</LoginInput>
-    <LoginInput type="password" name="password" v-model="password">Mot de passe</LoginInput>
+    <LoginInput type="text" name="login" v-model="login"
+      >Nom d'utilisateur</LoginInput
+    >
+    <LoginInput type="password" name="password" v-model="password"
+      >Mot de passe</LoginInput
+    >
     <SubmitButton :login="login" :password="password" :error_method="error" />
   </div>
 </template>
 
 <script>
-import LoginInput from './LoginInput.vue'
-import SubmitButton from './SubmitButton.vue'
+import LoginInput from "./LoginInput.vue";
+import SubmitButton from "./SubmitButton.vue";
 
 export default {
   name: "LoginForm",
@@ -45,8 +49,9 @@ export default {
     },
   },
   components: {
-    LoginInput, SubmitButton
-  }
+    LoginInput,
+    SubmitButton,
+  },
 };
 </script>
 
@@ -65,5 +70,11 @@ export default {
 #login > button {
   height: 2em;
   border-radius: 4px;
+}
+
+@media only screen and (max-device-width: 812px) {
+  #login {
+    width: 70%;
+  }
 }
 </style>

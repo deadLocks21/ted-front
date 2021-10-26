@@ -58,4 +58,10 @@ button {
   margin-top: 1em;
   margin-left: 1em;
 }
+
+@media only screen and (max-device-width: 812px) {
+  #delete_dialog {
+    width: 80%;
+  }
+}
 </style>

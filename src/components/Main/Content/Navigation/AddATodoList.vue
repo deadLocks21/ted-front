@@ -12,3 +12,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media only screen and (max-device-width: 812px) {
+  .todolist > h1 {
+    text-align: center;
+    margin-right: 1em;
+  }
+}
+</style>

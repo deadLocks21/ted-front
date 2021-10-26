@@ -2,25 +2,29 @@
   <div class="todolist" @click="click">
     <h1>{{ todolist.name }}</h1>
     <ul>
-        <TodoItem v-for="index in 3" :task="todolist.tasks[index - 1]" :key="index"/>
+      <TodoItem
+        v-for="index in 3"
+        :task="todolist.tasks[index - 1]"
+        :key="index"
+      />
     </ul>
   </div>
 </template>
 
 <script>
-import TodoItem from './TodoItem.vue'
+import TodoItem from "./TodoItem.vue";
 
 export default {
   name: "TodoListItem",
   props: ["todolist"],
   components: {
-      TodoItem
+    TodoItem,
   },
   methods: {
-      click() {
-        this.$store.dispatch("setDisplayed", this.todolist);
-      }
-  }
+    click() {
+      this.$store.dispatch("setDisplayed", this.todolist);
+    },
+  },
 };
 </script>
 
@@ -40,5 +44,25 @@ export default {
 
 .todolist > ul {
   margin: 0;
+}
+
+@media only screen and (max-device-width: 812px) {
+  .todolist {
+    min-width: 40%;
+    margin-left: 1em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .todolist > h1 {
+    text-align: center;
+  }
+
+  .todolist > ul {
+    display: none;
+  }
 }
 </style>
