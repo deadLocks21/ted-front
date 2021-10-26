@@ -28,7 +28,6 @@ nav {
   justify-content: flex-start;
   align-items: center;
   overflow-y: scroll;
-  overflow-x: none;
   scrollbar-color: rgba(0, 0, 0, 0.6) #f6f3f0;
 }
 

@@ -28,36 +28,175 @@ export default {
         id: 1,
         name: "My fisrt todolist",
         user: 1,
+        tasks: [
+          {
+            id: 1,
+            task: "My first task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 2,
+            task: "My second completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 3,
+            task: "My third task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 4,
+            task: "My forth completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 5,
+            task: "My five task",
+            completed: false,
+            todolist: 1,
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "My second todolist",
+        user: 1,
+        tasks: [
+          {
+            id: 1,
+            task: "My first task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 2,
+            task: "My second completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 3,
+            task: "My third task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 4,
+            task: "My forth completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 5,
+            task: "My five task",
+            completed: false,
+            todolist: 1,
+          },
+        ],
       },
       {
         id: 3,
         name: "My thrid todolist",
         user: 1,
+        tasks: [
+          {
+            id: 1,
+            task: "My first task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 2,
+            task: "My second completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 3,
+            task: "My third task",
+            completed: false,
+            todolist: 1,
+          },
+        ],
       },
-            {
-        id: 3,
-        name: "My thrid todolist",
+      {
+        id: 4,
+        name: "My 4 todolist",
         user: 1,
+        tasks: [],
       },
-            {
-        id: 3,
-        name: "My thrid todolist",
+      {
+        id: 5,
+        name: "My 5 todolist",
         user: 1,
+        tasks: [
+          {
+            id: 1,
+            task: "My first task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 2,
+            task: "My second completed task",
+            completed: true,
+            todolist: 1,
+          },
+        ],
       },
-            {
-        id: 3,
-        name: "My thrid todolist",
+      {
+        id: 6,
+        name: "My 6 todolist",
         user: 1,
+        tasks: [
+          {
+            id: 1,
+            task: "My first task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 2,
+            task: "My second completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 3,
+            task: "My third task",
+            completed: false,
+            todolist: 1,
+          },
+        ],
       },
-            {
-        id: 3,
-        name: "My thrid todolist",
+      {
+        id: 7,
+        name: "My 7 todolist",
         user: 1,
-      },
-            {
-        id: 3,
-        name: "My thrid todolist",
-        user: 1,
+        tasks: [
+          {
+            id: 1,
+            task: "My first task",
+            completed: false,
+            todolist: 1,
+          },
+          {
+            id: 2,
+            task: "My second completed task",
+            completed: true,
+            todolist: 1,
+          },
+          {
+            id: 3,
+            task: "My third task",
+            completed: false,
+            todolist: 1,
+          },
+        ],
       },
     ]);
     // TODO Load data
