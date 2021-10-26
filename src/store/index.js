@@ -102,9 +102,13 @@ export default createStore({
       // TODO Add online !!
     },
     setEditMode(context) {
-      // TODO Save online !!
-      if (context.state.edit) context.commit("EXIT_EDIT_MODE");
-      else context.commit("ENTER_EDIT_MODE");
+      if (context.state.edit) {
+        context.commit("EXIT_EDIT_MODE");
+        // TODO Save online !!
+      } 
+      else {
+        context.commit("ENTER_EDIT_MODE");
+      } 
     },
   },
   modules: {},

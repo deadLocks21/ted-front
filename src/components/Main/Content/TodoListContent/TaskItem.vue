@@ -1,20 +1,35 @@
 <template>
-  <li @click="complete">
-    <span v-if="!task.completed">
-      <div class="checkbox"></div>
-      {{ task.task }}
-    </span>
-    <span v-else>
-      <div class="checkbox">X</div>
-      <p class="completed">{{ task.task }}</p>
-    </span>
-  </li>
+  <div>
+    <li @click="complete" v-if="!$store.state.edit">
+      <span v-if="!task.completed">
+        <div class="checkbox"></div>
+        {{ task.task }}
+      </span>
+      <span v-else>
+        <div class="checkbox">X</div>
+        <p class="completed">{{ task.task }}</p>
+      </span>
+    </li>
+    <li v-else>
+      <span v-if="!task.completed">
+        <input type="text" v-model="task_edit.task" />
+      </span>
+    </li>
+  </div>
 </template>
 
 <script>
 export default {
   name: "TaskItem",
   props: ["task"],
+  data() {
+    return {
+      task_edit: {},
+    };
+  },
+  created() {
+    this.task_edit = this.task;
+  },
   methods: {
     complete() {
       this.$store.dispatch("setComplete", {
@@ -55,5 +70,11 @@ span {
   align-items: center;
   justify-content: center;
   border-radius: 2px;
+}
+
+input {
+  font-size: 1.3em;
+  margin-bottom: 0.6em;
+  width: 90%;
 }
 </style>
