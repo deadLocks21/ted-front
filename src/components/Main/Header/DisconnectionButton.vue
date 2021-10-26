@@ -26,5 +26,6 @@ export default {
   padding-right: 1em;
   margin-top: 1em;
   margin-right: 1em;
+  cursor: pointer;
 }
 </style>

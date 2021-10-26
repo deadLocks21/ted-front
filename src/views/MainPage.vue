@@ -23,6 +23,12 @@ import Content from "../components/Main/Content/Content.vue";
 export default {
   name: "MainPage",
   beforeCreate() {
+    this.$store.dispatch("setTodoLists", []);
+    this.$store.dispatch("setDisplayed", {
+      id: 0,
+      name: "Clique sur une todolist à gauche pour l'afficher",
+      tasks: {},
+    });
     fetch("/ted-api/todolists", {
       method: "GET",
     })
@@ -31,7 +37,9 @@ export default {
       })
       .then((data) => {
         let todolists = data.todolists;
-        todolists.forEach((element) => {element.tasks = []});
+        todolists.forEach((element) => {
+          element.tasks = [];
+        });
         this.$store.dispatch("setTodoLists", todolists);
 
         todolists.forEach((element) => {

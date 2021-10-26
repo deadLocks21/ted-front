@@ -6,7 +6,7 @@
       id="setting-button"
       @click="display_menu"
     />
-    <div id="edit_delete_menu">
+    <div id="edit_delete_menu" v-if="display_the_menu">
       <p @click="edit_todolist" v-if="!$store.state.edit">
         <ion-icon name="create"></ion-icon> Modifier la todolist
       </p>
@@ -27,10 +27,10 @@ export default {
   name: "SettingsMenu",
   data() {
     return {
-      top: 0,
+      top: -200,
       right: 0,
-      opacity: 0,
       opacity_button: 0,
+      display_the_menu: false,
     };
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
       this.$store.dispatch("setDeleteMode", {message: true});
     } ,
     display_menu() {
-      if (this.top == 0 && this.right == 0) {
+      if (this.top == -200 && this.right == 0) {
         var xPos = 0;
         var yPos = 0;
         var el = document.getElementById("setting-button");
@@ -53,8 +53,7 @@ export default {
         this.right = `calc(100% - ${xPos}px - 1em)`;
       }
 
-      if (this.opacity == 0.0) this.opacity = 1;
-      else this.opacity = 0;
+      this.display_the_menu = !this.display_the_menu;
     },
     edit_todolist() {
       this.$store.dispatch("setEditMode");
@@ -82,7 +81,6 @@ div > ion-icon {
   position: absolute;
   top: v-bind("top");
   right: v-bind("right");
-  opacity: v-bind("opacity");
   background-color: #f6f3f0;
   display: flex;
   flex-direction: column;
