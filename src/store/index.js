@@ -117,7 +117,14 @@ export default createStore({
     setComplete(context, payload) {
       if (payload.completed) context.commit("SET_COMPLETE", payload);
       else context.commit("SET_UNCOMPLETE", payload);
-      // TODO Add online !!
+      console.log(payload);
+      fetch(`/ted-api/tasks/edit/${payload.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `completed=${payload.completed}`,
+      });
     },
     addNewTodolist(context) {
       fetch("/ted-api/todolists/add", {
@@ -159,8 +166,26 @@ export default createStore({
     },
     setEditMode(context) {
       if (context.state.edit) {
+        context.state.todolists.forEach((element) => {
+          fetch(`/ted-api/todolists/edit/${element.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `name=${element.name}`,
+          });
+
+          element.tasks.forEach((el) => {
+            fetch(`/ted-api/tasks/edit/${el.id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: `task=${el.task}&completed=${el.completed ? 1 : 0}`,
+            });
+          });
+        });
         context.commit("EXIT_EDIT_MODE");
-        // TODO Save online !!
       } else {
         context.commit("ENTER_EDIT_MODE");
       }
@@ -179,9 +204,12 @@ export default createStore({
       context.commit("DELETE_TASK", payload);
     },
     deleteTodoList(context) {
-      fetch(`/ted-api/todolists/delete/${context.state.displayed_todolist.id}`, {
-        method: "DELETE",
-      });
+      fetch(
+        `/ted-api/todolists/delete/${context.state.displayed_todolist.id}`,
+        {
+          method: "DELETE",
+        }
+      );
       context.commit("DELETE_TODOLIST");
       context.commit("EXIT_DELETE_MODE");
     },
