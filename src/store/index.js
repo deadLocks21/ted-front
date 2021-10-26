@@ -125,27 +125,34 @@ export default createStore({
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: "name=Une nouvelle todo"
+        body: "name=Une nouvelle todo",
       })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        let new_todolist = data.todolist;
-        new_todolist.tasks = [];
-        context.commit("ADD_NEW_TODOLIST", new_todolist);
-        context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
-      });
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          let new_todolist = data.todolist;
+          new_todolist.tasks = [];
+          context.commit("ADD_NEW_TODOLIST", new_todolist);
+          context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
+        });
     },
     addNewTask(context) {
-      let new_task = {
-        id: 8,
-        task: "Nouvelle tâche",
-        completed: false,
-        todolist: context.state.displayed_todolist.id,
-      };
-      context.commit("ADD_NEW_TASK", new_task);
-      // TODO Add online !!
+      fetch(`/ted-api/tasks/add/${context.state.displayed_todolist.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "task=Nouvelle tâche",
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          let new_task = data.task;
+          new_task.todolist = parseInt(new_task.todolist, 10);
+          context.commit("ADD_NEW_TASK", new_task);
+        });
     },
     addTask(context, payload) {
       context.commit("ADD_NEW_TASK", payload);
@@ -173,7 +180,7 @@ export default createStore({
       context.commit("DELETE_TODOLIST");
       // TODO Delete
       context.commit("EXIT_DELETE_MODE");
-    } 
+    },
   },
   modules: {},
 });
