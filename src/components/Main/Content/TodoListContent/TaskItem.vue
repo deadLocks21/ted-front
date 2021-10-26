@@ -19,7 +19,6 @@ export default {
     complete() {
       this.$store.dispatch("setComplete", {
         id: this.task.id,
-        todolist_id: this.task.todolist,
         completed: !this.task.completed,
       });
     },

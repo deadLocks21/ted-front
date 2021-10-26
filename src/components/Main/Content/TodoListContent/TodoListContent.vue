@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h1>{{ $store.state.displayed_todolist.name }}</h1>
+    <TitleHeader />
     <ul>
       <TaskItem v-for="item in $store.state.displayed_todolist.tasks" :key="item" :task="item" @task-complete="setComplete" />
-      <AddNewTask />
+      <AddNewTask v-if="$store.state.edit" />
     </ul>
   </section>
 </template>
@@ -11,12 +11,14 @@
 <script>
 import TaskItem from './TaskItem.vue'
 import AddNewTask from './AddNewTask.vue'
+import TitleHeader from './TitleHeader.vue'
 
 export default {
   name: "TodoListContent",
   components: {
     TaskItem,
-    AddNewTask
+    AddNewTask,
+    TitleHeader
   },
   methods: {
     setComplete(payload) {
@@ -39,17 +41,11 @@ section {
   align-items: center;
 }
 
-h1 {
-  margin: 0;
-  padding: 1em;
-  font-size: 2em;
-}
-
 ul {
   width: 90%;
   margin-bottom: 2em;
   overflow-y: scroll;
-  scrollbar-color: rgba(0, 0, 0, 0.6) #f6f3f0;
+  scrollbar-color: rgba(0, 0, 0, 0.6) #fff;
 }
 
 ul::-webkit-scrollbar {

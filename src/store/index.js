@@ -7,10 +7,9 @@ export default createStore({
     displayed_todolist: {
       id: 0,
       name: "Clique sur une todolist à gauche pour l'afficher",
-      tasks: {
-
-      },
+      tasks: {},
     },
+    edit: false,
   },
   mutations: {
     CONNECTION(state) {
@@ -19,6 +18,12 @@ export default createStore({
     DISCONNECTION(state) {
       state.connected = false;
     },
+    ENTER_EDIT_MODE(state) {
+      state.edit = true;
+    },
+    EXIT_EDIT_MODE(state) {
+      state.edit = false;
+    },
     SET_TODOLISTS(state, list) {
       state.todolists = list;
     },
@@ -26,22 +31,42 @@ export default createStore({
       state.displayed_todolist = todolist;
     },
     SET_COMPLETE(state, task) {
-      let index_todolist = state.todolists.map(function(e) { return e.id; }).indexOf(task.todolist_id);
-      let index_task = state.todolists[index_todolist].tasks.map(function(e) { return e.id; }).indexOf(task.id);
+      let index_todolist = state.todolists
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(state.displayed_todolist.id);
+      let index_task = state.todolists[index_todolist].tasks
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(task.id);
       state.todolists[index_todolist].tasks[index_task].completed = true;
     },
     SET_UNCOMPLETE(state, task) {
-      let index_todolist = state.todolists.map(function(e) { return e.id; }).indexOf(task.todolist_id);
-      let index_task = state.todolists[index_todolist].tasks.map(function(e) { return e.id; }).indexOf(task.id);
+      let index_todolist = state.todolists
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(state.displayed_todolist.id);
+      let index_task = state.todolists[index_todolist].tasks
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(task.id);
       state.todolists[index_todolist].tasks[index_task].completed = false;
     },
     ADD_NEW_TODOLIST(state, todolist) {
       state.todolists.push(todolist);
     },
     ADD_NEW_TASK(state, task) {
-      let index_todolist = state.todolists.map(function(e) { return e.id; }).indexOf(task.todolist);
+      let index_todolist = state.todolists
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(task.todolist);
       state.todolists[index_todolist].tasks.push(task); // TODO edit
-    }
+    },
   },
   actions: {
     login(context, payload) {
@@ -61,16 +86,26 @@ export default createStore({
       // TODO Add online !!
     },
     addNewTodolist(context) {
-      let new_todolist = {id: 8, name: "Une nouvelle todo", tasks: {}};
+      let new_todolist = { id: 8, name: "Une nouvelle todo", tasks: {} };
       context.commit("ADD_NEW_TODOLIST", new_todolist);
       context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
       // TODO Add online !!
     },
     addNewTask(context) {
-      let new_task = {id: 8, task: "Nouvelle tâche", completed: false, todolist: context.state.displayed_todolist.id,};
+      let new_task = {
+        id: 8,
+        task: "Nouvelle tâche",
+        completed: false,
+        todolist: context.state.displayed_todolist.id,
+      };
       context.commit("ADD_NEW_TASK", new_task);
       // TODO Add online !!
-    }
+    },
+    setEditMode(context) {
+      // TODO Save online !!
+      if (context.state.edit) context.commit("EXIT_EDIT_MODE");
+      else context.commit("ENTER_EDIT_MODE");
+    },
   },
   modules: {},
 });
