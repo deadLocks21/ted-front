@@ -37,6 +37,10 @@ export default createStore({
     },
     ADD_NEW_TODOLIST(state, todolist) {
       state.todolists.push(todolist);
+    },
+    ADD_NEW_TASK(state, task) {
+      let index_todolist = state.todolists.map(function(e) { return e.id; }).indexOf(task.todolist);
+      state.todolists[index_todolist].tasks.push(task); // TODO edit
     }
   },
   actions: {
@@ -62,6 +66,11 @@ export default createStore({
       context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
       // TODO Add online !!
     },
+    addNewTask(context) {
+      let new_task = {id: 8, task: "Nouvelle tâche", completed: false, todolist: context.state.displayed_todolist.id,};
+      context.commit("ADD_NEW_TASK", new_task);
+      // TODO Add online !!
+    }
   },
   modules: {},
 });

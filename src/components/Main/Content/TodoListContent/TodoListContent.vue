@@ -3,17 +3,20 @@
     <h1>{{ $store.state.displayed_todolist.name }}</h1>
     <ul>
       <TaskItem v-for="item in $store.state.displayed_todolist.tasks" :key="item" :task="item" @task-complete="setComplete" />
+      <AddNewTask />
     </ul>
   </section>
 </template>
 
 <script>
 import TaskItem from './TaskItem.vue'
+import AddNewTask from './AddNewTask.vue'
 
 export default {
   name: "TodoListContent",
   components: {
-    TaskItem
+    TaskItem,
+    AddNewTask
   },
   methods: {
     setComplete(payload) {
