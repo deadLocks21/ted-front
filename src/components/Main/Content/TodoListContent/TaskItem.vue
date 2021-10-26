@@ -11,7 +11,8 @@
       </span>
     </li>
     <li v-else>
-      <span v-if="!task.completed">
+      <span>
+        <ion-icon name="trash" @click="delete_task"></ion-icon>
         <input type="text" v-model="task_edit.task" />
       </span>
     </li>
@@ -37,6 +38,9 @@ export default {
         completed: !this.task.completed,
       });
     },
+    delete_task() {
+      this.$store.dispatch("deleteTask", {id: this.task.id});
+    }
   },
 };
 </script>
@@ -55,6 +59,20 @@ li {
 span {
   display: flex;
   align-items: center;
+  margin-bottom: 0.6em;
+}
+
+ion-icon {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+input {
+  font-size: 1.3em;
+  width: 90%;
+  border: none;
+  border-bottom: solid rgba(0, 0, 0, 0.6) 1.5px;
+  margin-left: 0.5em;
 }
 
 .completed {
@@ -70,11 +88,5 @@ span {
   align-items: center;
   justify-content: center;
   border-radius: 2px;
-}
-
-input {
-  font-size: 1.3em;
-  margin-bottom: 0.6em;
-  width: 90%;
 }
 </style>

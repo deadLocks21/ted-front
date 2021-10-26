@@ -10,6 +10,7 @@ export default createStore({
       tasks: {},
     },
     edit: false,
+    delete: false,
   },
   mutations: {
     CONNECTION(state) {
@@ -23,6 +24,13 @@ export default createStore({
     },
     EXIT_EDIT_MODE(state) {
       state.edit = false;
+    },
+    ENTER_DELETE_MODE(state) {
+      state.delete = true;
+      state.edit = false;
+    },
+    EXIT_DELETE_MODE(state) {
+      state.delete = false;
     },
     SET_TODOLISTS(state, list) {
       state.todolists = list;
@@ -67,6 +75,32 @@ export default createStore({
         .indexOf(task.todolist);
       state.todolists[index_todolist].tasks.push(task); // TODO edit
     },
+    DELETE_TASK(state, task) {
+      let index_todolist = state.todolists
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(state.displayed_todolist.id);
+      let index_task = state.todolists[index_todolist].tasks
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(task.id);
+      state.todolists[index_todolist].tasks.splice(index_task, 1);
+    },
+    DELETE_TODOLIST(state) {
+      let index_todolist = state.todolists
+        .map(function(e) {
+          return e.id;
+        })
+        .indexOf(state.displayed_todolist.id);
+      state.displayed_todolist = {
+        id: 0,
+        name: "Clique sur une todolist à gauche pour l'afficher",
+        tasks: {},
+      };
+      state.todolists.splice(index_todolist, 1);
+    },
   },
   actions: {
     login(context, payload) {
@@ -105,11 +139,26 @@ export default createStore({
       if (context.state.edit) {
         context.commit("EXIT_EDIT_MODE");
         // TODO Save online !!
-      } 
-      else {
+      } else {
         context.commit("ENTER_EDIT_MODE");
-      } 
+      }
     },
+    setDeleteMode(context, payload) {
+      if (payload.message) {
+        context.commit("ENTER_DELETE_MODE");
+      } else {
+        context.commit("EXIT_DELETE_MODE");
+      }
+    },
+    deleteTask(context, payload) {
+      context.commit("DELETE_TASK", payload);
+      // TODO Delete
+    },
+    deleteTodoList(context) {
+      context.commit("DELETE_TODOLIST");
+      // TODO Delete
+      context.commit("EXIT_DELETE_MODE");
+    } 
   },
   modules: {},
 });

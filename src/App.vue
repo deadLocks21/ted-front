@@ -3,6 +3,7 @@
   <!-- <DisplayData v-if="$store.state.connected" /> -->
   <Login v-if="$store.state.connected" />
   <MainPage v-if="!$store.state.connected" />
+  <DeletePage v-if="$store.state.delete" />
 </template>
 
 <style lang="less">
@@ -30,12 +31,14 @@ body {
 <script>
 import Login from "./views/LoginPage.vue";
 import MainPage from "./views/MainPage.vue";
+import DeletePage from "./views/DeletePage.vue";
 
 export default {
   name: "App",
   components: {
     Login,
     MainPage,
+    DeletePage,
   },
 };
 </script>

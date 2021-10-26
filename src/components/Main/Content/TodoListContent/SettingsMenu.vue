@@ -15,7 +15,7 @@
         <ion-icon name="close"></ion-icon> Fermer le mode édition
       </p>
       <div class="divider" v-if="$store.state.edit"></div>
-      <p @click="delete_todolist">
+      <p @click="want_delete_todo">
         <ion-icon name="trash"></ion-icon> Supprimer la todolist
       </p>
     </div>
@@ -34,6 +34,10 @@ export default {
     };
   },
   methods: {
+    want_delete_todo() {
+      this.display_menu();
+      this.$store.dispatch("setDeleteMode", {message: true});
+    } ,
     display_menu() {
       if (this.top == 0 && this.right == 0) {
         var xPos = 0;

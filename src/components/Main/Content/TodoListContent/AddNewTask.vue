@@ -27,6 +27,7 @@ li {
 span {
   display: flex;
   align-items: center;
+  font-size: 1.2em;
 }
 
 .add {
