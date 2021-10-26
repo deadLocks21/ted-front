@@ -120,10 +120,22 @@ export default createStore({
       // TODO Add online !!
     },
     addNewTodolist(context) {
-      let new_todolist = { id: 8, name: "Une nouvelle todo", tasks: {} };
-      context.commit("ADD_NEW_TODOLIST", new_todolist);
-      context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
-      // TODO Add online !!
+      fetch("/ted-api/todolists/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "name=Une nouvelle todo"
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let new_todolist = data.todolist;
+        new_todolist.tasks = [];
+        context.commit("ADD_NEW_TODOLIST", new_todolist);
+        context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
+      });
     },
     addNewTask(context) {
       let new_task = {
