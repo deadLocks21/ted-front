@@ -35,6 +35,9 @@ export default createStore({
       let index_task = state.todolists[index_todolist].tasks.map(function(e) { return e.id; }).indexOf(task.id);
       state.todolists[index_todolist].tasks[index_task].completed = false;
     },
+    ADD_NEW_TODOLIST(state, todolist) {
+      state.todolists.push(todolist);
+    }
   },
   actions: {
     login(context, payload) {
@@ -51,6 +54,12 @@ export default createStore({
     setComplete(context, payload) {
       if (payload.completed) context.commit("SET_COMPLETE", payload);
       else context.commit("SET_UNCOMPLETE", payload);
+      // TODO Add online !!
+    },
+    addNewTodolist(context) {
+      let new_todolist = {id: 8, name: "Une nouvelle todo", tasks: {}};
+      context.commit("ADD_NEW_TODOLIST", new_todolist);
+      context.commit("SET_DISPLAYED_TODOLIST", new_todolist);
       // TODO Add online !!
     },
   },

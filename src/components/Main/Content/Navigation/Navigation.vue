@@ -5,16 +5,19 @@
       :key="item"
       :todolist="item"
     />
+    <AddATodoList />
   </nav>
 </template>
 
 <script>
 import TodoListItem from "./TodoListItem.vue";
+import AddATodoList from "./AddATodoList.vue";
 
 export default {
   name: "Navigation",
   components: {
     TodoListItem,
+    AddATodoList
   },
 };
 </script>
