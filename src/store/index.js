@@ -173,8 +173,10 @@ export default createStore({
       }
     },
     deleteTask(context, payload) {
+      fetch(`/ted-api/tasks/delete/${payload.id}`, {
+        method: "DELETE",
+      });
       context.commit("DELETE_TASK", payload);
-      // TODO Delete
     },
     deleteTodoList(context) {
       context.commit("DELETE_TODOLIST");
