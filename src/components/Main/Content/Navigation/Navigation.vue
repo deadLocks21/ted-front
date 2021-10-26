@@ -1,21 +1,43 @@
 <template>
-  <div>
-    <p>Navigation</p>
-  </div>
+  <nav>
+    <TodoListItem
+      v-for="item in $store.state.todolists"
+      :key="item"
+      :todolist="item"
+    />
+  </nav>
 </template>
 
 <script>
+import TodoListItem from "./TodoListItem.vue";
+
 export default {
   name: "Navigation",
+  components: {
+    TodoListItem,
+  },
 };
 </script>
 
 <style scoped>
-div {
-  height: 100%;
-  width: 100%;
+nav {
+  width: 37.5%;
+  height: 90%;
   display: flex;
-  justify-content: center;
-  background-color: aqua;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: none;
+  scrollbar-color: rgba(0, 0, 0, 0.6) #f6f3f0;
+}
+
+nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
 }
 </style>

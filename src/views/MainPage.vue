@@ -12,6 +12,7 @@
   display: flex;
   flex-flow: column;
   padding-bottom: 1em;
+  overflow: hidden;
 }
 </style>
 
@@ -22,13 +23,38 @@ import Content from "../components/Main/Content/Content.vue";
 export default {
   name: "MainPage",
   beforeMount() {
-    this.$store.dispatch("setTodoList", [
+    this.$store.dispatch("setTodoLists", [
       {
         id: 1,
         name: "My fisrt todolist",
         user: 1,
       },
       {
+        id: 3,
+        name: "My thrid todolist",
+        user: 1,
+      },
+            {
+        id: 3,
+        name: "My thrid todolist",
+        user: 1,
+      },
+            {
+        id: 3,
+        name: "My thrid todolist",
+        user: 1,
+      },
+            {
+        id: 3,
+        name: "My thrid todolist",
+        user: 1,
+      },
+            {
+        id: 3,
+        name: "My thrid todolist",
+        user: 1,
+      },
+            {
         id: 3,
         name: "My thrid todolist",
         user: 1,

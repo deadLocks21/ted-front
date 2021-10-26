@@ -1,11 +1,7 @@
 <template>
   <div class="row">
-    <nav>
-      <Navigation />
-    </nav>
-    <article>
-      <TodoListContent />
-    </article>
+    <Navigation />
+    <TodoListContent />
   </div>
 </template>
 
@@ -24,16 +20,9 @@ export default {
 
 <style scoped>
 .row {
+  height: 100%;
   flex: 1 1 auto;
   display: flex;
   justify-content: space-around;
-}
-
-nav {
-  width: 37.5%;
-}
-
-article {
-  width: 57.5%;
 }
 </style>
